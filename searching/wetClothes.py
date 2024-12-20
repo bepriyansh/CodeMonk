@@ -20,22 +20,36 @@ Output Format:
 Print the maximum number of clothes we can collect.
 '''
 
+def upper(nums, t, s, e):
+    l,r = s,e
+    while l < r:
+        m = (l+r)//2
+        if nums[m] > t:
+            r = m
+        else:
+            l = m+1
+    return l
 
 def solve():
-    n,m,g = input().split()
-    t = list(map(int,input().split()))
-    dt = list(map(int,input().split()))
+    n, m, g = map(int, input().split())
+    rain = list(map(int, input().split()))
+    drytime = list(map(int, input().split()))
 
-    gap =[]
-    for i in range(len(t)-1):
-        x = t[i+1]-t[i]
-        gap.append(x)
-        
-    m = max(gap)
-    c=0
-    for i in range(len(dt)):
-        if dt[i]<=m:
-            c+=1
-    print(c)
+    durs = []
+    for i in range(len(rain)-1):
+        t = rain[i+1] - rain[i]
+        durs.append(t)
+
+    durs.sort(reverse=True)
+    drytime.sort()
+    ans = 0
+    s = 0
+    for i in range(g):
+        if i >= len(durs):
+            break
+        cnt = upper(drytime, durs[i], s, len(drytime)) - s
+        s += cnt
+        ans += cnt
+    print(ans)
     
 solve()
