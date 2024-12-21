@@ -29,3 +29,23 @@ def binary_search(nums, t, s, e):
         else:
             r = m-1
     return -1
+
+def prevGreaterElements(nums):
+    n = len(nums)
+    stk, res = [], [-1]*n
+    for i in range(n):
+        while stk and stk[-1][0] <= nums[i]:
+            stk.pop()
+        res[i] = stk[-1][1] if stk else -1
+        stk.append((nums[i], i))
+    return res
+        
+def nextGreaterElements(nums):
+    n = len(nums)
+    stk, res = [], [-1]*n
+    for i in range(n-1, -1, -1):
+        while stk and stk[-1][0] <= nums[i]:
+            stk.pop()
+        res[i] = stk[-1][1] if stk else -1
+        stk.append((nums[i], i))
+    return res
