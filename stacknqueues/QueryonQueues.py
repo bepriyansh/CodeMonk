@@ -20,43 +20,6 @@ Constraints
 1 <X<N
 '''
 
-'''
-# Brute Force
-
-def ls(A, t):
-    for i in range(len(A)):
-        if t == A[i]:
-            return i
-    return -1
-
-def count(A, x):
-    ind = ls(A, A[x])
-    l,r = 0,0
-    i = ind - 1
-    while i >= 0 and A[i] < A[x]:
-        l+=1
-        i -= 1 
-    if l != 0:
-        l += 1
-    i = ind + 1
-    while i < len(A) and A[i] < A[x]:
-        r += 1
-        i += 1
-    if r != 0:
-        r += 1
-    return l+r
-
-t = int(input())
-for _ in range(t):
-    n,k = map(int, input().split())
-    A = list(map(int, input().split()))
-
-    for __ in range(k):
-        x = int(input())
-        print(count(A, x-1))
-
-'''
-
 from sys import  stdout
 
 nums = []
