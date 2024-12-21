@@ -30,6 +30,15 @@ def binary_search(nums, t, s, e):
             r = m-1
     return -1
 
+def gcd(a,b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a,b):
+    return (a*b)//gcd(a,b)
+
+
 def prevGreaterElements(nums):
     n = len(nums)
     stk, res = [], [-1]*n
